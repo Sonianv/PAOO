@@ -1,19 +1,26 @@
 #pragma once
 
-#include <string>
-
 class Pet {
 private:
-    std::string name;
+    char* name;
     int age;
-    std::string type;
+    char* type;
 
 public:
-    Pet(const std::string& petName, int petAge, const std::string& petType);
-
+    Pet(const char* petName, int petAge, const char* petType);
+    
     Pet(const Pet& pet);
+
+    Pet(Pet&& pet);
+
+    Pet();
 
     ~Pet();
 
     void print() const;
+
+    void setName(const char* newName);
+
+    void setType(const char* newType);
+
 };
