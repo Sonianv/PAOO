@@ -12,6 +12,8 @@ public:
     Cat(Cat&& cat);
     Cat();
     ~Cat();
+    Cat& operator=(const Cat& other);
+    Cat& operator=(Cat&& other);
 
     void print() const override;
     void setName(const char* newName) override;

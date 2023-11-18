@@ -32,6 +32,32 @@ Cat::~Cat() {
     delete[] name;
 }
 
+Cat& Cat::operator=(const Cat& other) {
+    if (this != &other) {  
+        delete[] name;
+
+        age = other.age;
+        name = new char[strlen(other.name) + 1];
+        strcpy(name, other.name);
+    }
+    std::cout << name << " in copy assigment operator" << std::endl;
+    return *this;
+}
+
+Cat& Cat::operator=(Cat&& other) {
+    if (this != &other) {  
+        delete[] name;  
+
+        age = other.age;
+        name = other.name;
+
+        other.age = 0;     
+        other.name = nullptr; 
+    }
+    std::cout << name << " in move assigment operator" << std::endl;
+    return *this;
+}
+
 void Cat::print() const {
     if (name) {
         std::cout << "Cat: " << name << "has an age of: " << age << std::endl;
