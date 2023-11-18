@@ -9,14 +9,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -fno-elide-constructors")
 add_subdirectory(pet)
 add_subdirectory(dog)
 add_subdirectory(cat)
+add_subdirectory(sphynxCat)
 
 add_executable(Tema2 main.cxx)
 
-target_link_libraries(Tema2 PUBLIC PetLibrary DogLibrary CatLibrary)
+target_link_libraries(Tema2 PUBLIC PetLibrary DogLibrary CatLibrary SphynxCatLibrary)
 
 target_include_directories(Tema2 PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/pet"
                           "${PROJECT_SOURCE_DIR}/dog"
                           "${PROJECT_SOURCE_DIR}/cat"
+                          "${PROJECT_SOURCE_DIR}/sphynxCat"
                           )

@@ -1,6 +1,9 @@
 #include <iostream>
 #include "dog.h"
 #include "cat.h"
+#include "sphynxCat.h"
+
+using namespace sphynx;
 
 int main() {
     
@@ -11,12 +14,19 @@ int main() {
     copyDog.setName("Kara");
 
     dog.print();
+    copyDog.print();
     dog2.print();
 
     Cat cat("Rhea", 5);
+
+    cat.print();
+
     Cat assignCat;
     assignCat = cat;
     assignCat = Cat("Miti", 6);
+    assignCat.takeBath();
 
+    Cat* sphynx = new SphynxCat("Paco2", 6);
+    sphynx->takeBath();
     return 0;
 }

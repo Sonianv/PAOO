@@ -60,7 +60,7 @@ Cat& Cat::operator=(Cat&& other) {
 
 void Cat::print() const {
     if (name) {
-        std::cout << "Cat: " << name << "has an age of: " << age << std::endl;
+        std::cout << "Cat: " << name << " has an age of: " << age << std::endl;
     } else {
         std::cout << "Not all fields are initialized." << std::endl;
     }
@@ -70,4 +70,8 @@ void Cat::setName(const char* newName) {
     delete[] name;
     name = new char[strlen(newName) + 1];
     strcpy(name, newName);
+}
+
+void Cat::takeBath() const{
+    std::cout << "Bathing " << name << ". Meaaaaaw!" << std::endl;
 }
