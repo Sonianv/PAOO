@@ -26,7 +26,8 @@ int main() {
     assignCat = Cat("Miti", 6);
     assignCat.takeBath();
 
-    Cat* sphynx = new SphynxCat("Paco2", 6);
+    Cat* sphynx = new SphynxCat("Paco", 6);
     sphynx->takeBath();
+    delete sphynx;
     return 0;
 }
