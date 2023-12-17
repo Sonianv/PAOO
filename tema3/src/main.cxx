@@ -1,10 +1,7 @@
 #include <iostream>
 #include <thread>
 #include "dog.h"
-#include "cat.h"
-#include "sphynxCat.h"
-
-using namespace sphynx;
+#include "owner.h"
 
 int main() {
     
@@ -37,6 +34,19 @@ int main() {
     gettingHungryThread2.join();
 
     cara.print();
+
+
+    //smart pointers
+    std::shared_ptr<Dog> dog = std::make_shared<Dog>("Lacky", 8);
+    std::shared_ptr<Owner> owner = std::make_shared<Owner>("Sonia");
+
+    std::weak_ptr<Dog> weakDog = dog;
+
+    if (auto sharedDog = weakDog.lock()) {
+        sharedDog->setOwner(owner);
+    }
+
+    owner->setDog(dog);
 
     return 0;
 }

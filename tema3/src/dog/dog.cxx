@@ -3,6 +3,7 @@
 #include <mutex>
 #include <thread>
 #include "dog.h"
+#include "owner.h"
 
 std::mutex foodMutex;
 
@@ -35,7 +36,7 @@ Dog::Dog() : name(nullptr), age(0), foodLevel(0) {
 }
 
 Dog::~Dog() {
-    std::cout << "Dog memory deallocated!" << std::endl;
+    std::cout << name << " memory deallocated!" << std::endl;
     delete []name;
 }
 
@@ -61,7 +62,7 @@ void Dog::isFedBy(const char* person) {
     while (foodLevel < desiredFoodLevel && foodLevel < 10) {
         std::cout << person << " is feeding " << name << ". Food level: " << foodLevel << std::endl;
         foodLevel++;
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
     std::cout << "Current food level: " << foodLevel << std::endl;
@@ -75,8 +76,12 @@ void Dog::isGettingHungry() {
     while (foodLevel > desiredFoodLevel && desiredFoodLevel > 0) {
         std::cout << name << " is getting hungry. Food level: " << foodLevel << std::endl;
         foodLevel--;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     
     std::cout << "Current food level: " << foodLevel << std::endl;
+}
+
+void Dog::setOwner(const std::shared_ptr<Owner>& owner) {
+    ownerPtr = owner;
 }
