@@ -56,29 +56,14 @@ void Dog::setName(const char* newName) {
 
 void Dog::isFedBy(const char* person) {
 
-    std::lock_guard<std::mutex> lock(foodMutex);
-
-    int desiredFoodLevel = foodLevel + 4;
-    while (foodLevel < desiredFoodLevel && foodLevel < 10) {
-        std::cout << person << " is feeding " << name << ". Food level: " << foodLevel << std::endl;
+    while (foodLevel < 10) {
+        std::cout << person << " is feeding " << name << std::endl;
+        std::lock_guard<std::mutex> lock(foodMutex);
+        if(foodLevel == 10) break;
         foodLevel++;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
-    std::cout << "Current food level: " << foodLevel << std::endl;
-}
-
-void Dog::isGettingHungry() {
-
-    std::lock_guard<std::mutex> lock(foodMutex);
-
-    int desiredFoodLevel = foodLevel - 3;
-    while (foodLevel > desiredFoodLevel && desiredFoodLevel > 0) {
-        std::cout << name << " is getting hungry. Food level: " << foodLevel << std::endl;
-        foodLevel--;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    
     std::cout << "Current food level: " << foodLevel << std::endl;
 }
 

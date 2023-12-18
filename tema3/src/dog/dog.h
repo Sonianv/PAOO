@@ -21,6 +21,5 @@ public:
     void print() const override;
     void setName(const char* newName) override;
     void isFedBy(const char* person);
-    void isGettingHungry();
     void setOwner(const std::shared_ptr<Owner>& owner);
 };

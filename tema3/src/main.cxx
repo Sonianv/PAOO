@@ -19,19 +19,9 @@ int main() {
         cara.isFedBy("Marius");
     });
 
-    std::thread gettingHungryThread1([&cara]() {
-        cara.isGettingHungry();
-    });
-
-    std::thread gettingHungryThread2([&cara]() {
-        cara.isGettingHungry();
-    });
-
     feedingThread1.join();
     feedingThread2.join();
     feedingThread3.join();
-    gettingHungryThread1.join();
-    gettingHungryThread2.join();
 
     cara.print();
 
